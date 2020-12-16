@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>xchg.xchg API documentation</title>
+<meta name="description" content="Simulator of a currency exchange." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>xchg.xchg</code></h1>
+</header>
+<section id="section-intro">
+<p>Simulator of a currency exchange.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#39;&#39;&#39;Simulator of a currency exchange.&#39;&#39;&#39;
+
+from .common import _read_candles
+
+
+class Xchg:
+    def __init__(self, fee, min_order_size, data_path=None, balance=None,
+                 candles=None):
+        &#39;&#39;&#39;Create an instance of a currency exchange.
+
+        Args:
+          fee: What part of a trade volume will be paid as fee. For example, 1%
+              fee should be set as 0.01.
+          min_order_size: Minimum trade volume expressed in a base currency
+              (cash).
+          data_path: Where csv files with data are stored.
+          balance: An initial balance. If it&#39;s None, then cash currency will be
+              set to 1.0 and all others to zero. If it&#39;s a float, then it will
+              set as the base currency (cash) value. Also you set it as a full
+              dictionary with all currencies as keys and values.
+          candles: You can directly initialize the class with candles, not to
+              read them from a disk.
+        &#39;&#39;&#39;
+        self.__fee = fee
+        self.__min_order_size = min_order_size
+
+        if data_path is not None:
+            res = _read_candles(data_path)
+            self.__currencies = res[&#39;currencies&#39;]
+            self.__candles = res[&#39;candles&#39;]
+        else:
+            self.__currencies = list(sorted(candles[0].keys()))
+            self.__candles = candles
+
+        self.__data_start = self.__candles[0][self.__currencies[0]][&#39;date&#39;]
+        self.__data_end = self.__candles[-1][self.__currencies[0]][&#39;date&#39;]
+
+        if type(balance) == dict:
+            self.__balance = balance
+        elif balance is None:
+            self.__balance = {}
+            self.__balance[&#39;cash&#39;] = 1.0
+            for currency in self.__currencies:
+                self.__balance[currency] = 0.0
+        else:
+            self.__balance = {}
+            self.__balance[&#39;cash&#39;] = float(balance)
+            for currency in self.__currencies:
+                self.__balance[currency] = 0.0
+
+    def __repr__(self):
+        &#39;&#39;&#39;Returns class attributes as a string.&#39;&#39;&#39;
+        return (f&#34;balance: {self.balance}\n&#34;
+                f&#34;fee: {self.fee}\n&#34;
+                f&#34;min_order_size: {self.min_order_size}\n&#34;
+                f&#34;currencies: {self.currencies}\n&#34;
+                f&#34;current_candle: {self.current_candle}\n&#34;
+                f&#34;capital: {self.capital}\n&#34;
+                f&#34;portfolio: {self.portfolio}\n&#34;
+                f&#34;lenght: {len(self)}\n&#34;
+                f&#34;data_start: {self.data_start}\n&#34;
+                f&#34;data_end: {self.data_end}&#34;)
+
+    def __len__(self):
+        &#39;&#39;&#39;Returns the number of candles.&#39;&#39;&#39;
+        return len(self.__candles)
+
+    @property
+    def data_start(self) -&gt; int:
+        &#39;&#39;&#39;Get a starting time of the data.
+
+        Returns:
+            A starting time of the data.
+        &#39;&#39;&#39;
+        return self.__data_start
+
+    @property
+    def data_end(self) -&gt; int:
+        &#39;&#39;&#39;Get an ending time of the data.
+
+        Returns:
+            An ending time of the data.
+        &#39;&#39;&#39;
+        return self.__data_end
+
+    @property
+    def current_candle(self) -&gt; dict:
+        &#39;&#39;&#39;Get a current candle.
+
+        Returns:
+            A current candle.
+        &#39;&#39;&#39;
+        return self.__candles[0]
+
+    @property
+    def balance(self) -&gt; float:
+        &#39;&#39;&#39;Get a current balance.
+
+        Returns:
+            A current balance.
+        &#39;&#39;&#39;
+        return self.__balance
+
+    @property
+    def fee(self) -&gt; float:
+        &#39;&#39;&#39;Get a fee which is used in the exchange.
+
+        Returns:
+            A fee.
+        &#39;&#39;&#39;
+        return self.__fee
+
+    @property
+    def currencies(self) -&gt; float:
+        &#39;&#39;&#39;Get currencies which are used in the exchange.
+
+        Returns:
+            List of currencies.
+        &#39;&#39;&#39;
+        return self.__currencies
+
+    @property
+    def min_order_size(self) -&gt; float:
+        &#39;&#39;&#39;Get a minimum order size which is set in the exchange.
+
+        Returns:
+            A minimum order value expressed in a cash currency.
+        &#39;&#39;&#39;
+        return self.__min_order_size
+
+    @property
+    def capital(self) -&gt; float:
+        &#39;&#39;&#39;Returns a current capital - sum of all currencies if they are
+        converted to a cash without fees.
+
+        Returns:
+            A capital.
+        &#39;&#39;&#39;
+        capital = 0
+        for currency, amount in self.balance.items():
+            if currency == &#39;cash&#39;:
+                capital += amount
+            else:
+                capital += amount * self.current_candle[currency][&#39;close&#39;]
+        return capital
+
+    @property
+    def portfolio(self) -&gt; dict:
+        &#39;&#39;&#39;Returns a current portfolio - proportion of capital by each
+        currency.
+
+        Returns:
+            A portfolio.
+        &#39;&#39;&#39;
+        cap = self.capital
+        portf = {}
+        for currency, amount in self.balance.items():
+            if currency == &#39;cash&#39;:
+                portf[currency] = self.balance[currency] / cap
+            else:
+                portf[currency] = (self.balance[currency]
+                                   * self.current_candle[currency][&#39;close&#39;]
+                                   / cap)
+        return portf
+
+    def next_step(self) -&gt; &#39;Xchg&#39;:
+        &#39;&#39;&#39;Go to the next step in timeline.
+
+        Returns:
+            A new Xchg instance with one candle removed.
+        &#39;&#39;&#39;
+        if len(self.__candles) == 1:
+            raise StopIteration
+        return Xchg(self.fee, self.min_order_size, balance=self.balance,
+                    candles=self.__candles[1:])
+
+    def buy(self, currency: str, amount: float) -&gt; dict:
+        &#39;&#39;&#39;Buy currency.
+
+        Args:
+            currency: A name of the currency.
+            amount: How much units of this currency to buy.
+
+        Returns:
+            A new Xchg instance after a buy operation.
+        &#39;&#39;&#39;
+
+        balance = self.balance.copy()
+        price = self.current_candle[currency][&#39;close&#39;]
+        without_fee = price * amount
+        with_fee = without_fee / (1 - self.fee)
+
+        # If we want to buy a slightly more than we have, we will forgive.
+        if (with_fee &lt;= (self.balance[&#39;cash&#39;] + 1e-10)
+                and without_fee &gt;= self.min_order_size):
+            balance[&#39;cash&#39;] -= with_fee
+            balance[currency] += amount
+            if balance[&#39;cash&#39;] &lt; 0.0:
+                # Set the balance to zero if we bought a slightly more than we
+                # have.
+                balance[&#39;cash&#39;] = 0.0
+
+        return Xchg(self.fee, self.min_order_size, balance=balance,
+                    candles=self.__candles)
+
+    def sell(self, currency: str, amount: float) -&gt; dict:
+        &#39;&#39;&#39;Sell currency.
+
+        Args:
+            currency: A name of the currency.
+            amount: How much units of this currency to sell.
+
+        Returns:
+            A new Xchg instance after a sell operation.
+        &#39;&#39;&#39;
+
+        balance = self.balance.copy()
+        price = self.current_candle[currency][&#39;close&#39;]
+        without_fee = price * amount
+        with_fee = without_fee * (1 - self.fee)
+
+        # If we want to sell a slightly more than we have, we will forgive.
+        if (amount &lt;= (self.balance[currency] + 1e-10)
+                and without_fee &gt;= self.min_order_size):
+            balance[&#39;cash&#39;] += with_fee
+            balance[currency] -= amount
+            if balance[currency] &lt; 0.0:
+                # Set the balance to zero if we bought a slightly more than we
+                # have.
+                balance[currency] = 0.0
+
+        return Xchg(self.fee, self.min_order_size, balance=balance,
+                    candles=self.__candles)
+
+    def make_portfolio(self, target_portfolio: dict) -&gt; dict:
+        &#39;&#39;&#39;Make a desired portfolio.
+
+        Args:
+            target_portfolio: A desired portfolio.
+
+        Returns:
+            A new Xchg instance with a desired portfolio distribution.
+        &#39;&#39;&#39;
+
+        x = self
+
+        # Calculate a capital change after trading.
+        cc0 = 1
+        cc1 = 1 - 2 * self.fee + self.fee ** 2
+        while abs(cc1 - cc0) &gt; 1e-10:
+            cc0 = cc1
+
+            # How much we will get from selling.
+            sell_amount = 0
+            for cur in x.currencies:
+                amount = x.portfolio[cur] - cc1 * target_portfolio[cur]
+                if amount &gt; 0:
+                    sell_amount += amount
+
+            cc1 = (1 - x.fee * x.portfolio[&#39;cash&#39;] - (2 * x.fee - x.fee ** 2)
+                   * sell_amount) \
+                / (1 - self.fee * target_portfolio[&#39;cash&#39;])
+
+        # A capital after trade.
+        tar_capital = x.capital * cc1
+
+        # Sell first.
+        for cur in x.currencies:
+            amount = tar_capital * target_portfolio[cur] \
+                     / x.current_candle[cur][&#39;close&#39;] - x.balance[cur]
+            if amount &lt; 0:
+                x = x.sell(cur, abs(amount))
+
+        # Then buy.
+        for cur in x.currencies:
+            amount = tar_capital * target_portfolio[cur] \
+                     / x.current_candle[cur][&#39;close&#39;] - x.balance[cur]
+            if amount &gt; 0:
+                x = x.buy(cur, abs(amount))
+
+        return x</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="xchg.xchg.Xchg"><code class="flex name class">
+<span>class <span class="ident">Xchg</span></span>
+<span>(</span><span>fee, min_order_size, data_path=None, balance=None, candles=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an instance of a currency exchange.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>fee</code></strong></dt>
+<dd>What part of a trade volume will be paid as fee. For example, 1%
+fee should be set as 0.01.</dd>
+<dt><strong><code>min_order_size</code></strong></dt>
+<dd>Minimum trade volume expressed in a base currency
+(cash).</dd>
+<dt><strong><code>data_path</code></strong></dt>
+<dd>Where csv files with data are stored.</dd>
+<dt><strong><code>balance</code></strong></dt>
+<dd>An initial balance. If it's None, then cash currency will be
+set to 1.0 and all others to zero. If it's a float, then it will
+set as the base currency (cash) value. Also you set it as a full
+dictionary with all currencies as keys and values.</dd>
+<dt><strong><code>candles</code></strong></dt>
+<dd>You can directly initialize the class with candles, not to
+read them from a disk.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Xchg:
+    def __init__(self, fee, min_order_size, data_path=None, balance=None,
+                 candles=None):
+        &#39;&#39;&#39;Create an instance of a currency exchange.
+
+        Args:
+          fee: What part of a trade volume will be paid as fee. For example, 1%
+              fee should be set as 0.01.
+          min_order_size: Minimum trade volume expressed in a base currency
+              (cash).
+          data_path: Where csv files with data are stored.
+          balance: An initial balance. If it&#39;s None, then cash currency will be
+              set to 1.0 and all others to zero. If it&#39;s a float, then it will
+              set as the base currency (cash) value. Also you set it as a full
+              dictionary with all currencies as keys and values.
+          candles: You can directly initialize the class with candles, not to
+              read them from a disk.
+        &#39;&#39;&#39;
+        self.__fee = fee
+        self.__min_order_size = min_order_size
+
+        if data_path is not None:
+            res = _read_candles(data_path)
+            self.__currencies = res[&#39;currencies&#39;]
+            self.__candles = res[&#39;candles&#39;]
+        else:
+            self.__currencies = list(sorted(candles[0].keys()))
+            self.__candles = candles
+
+        self.__data_start = self.__candles[0][self.__currencies[0]][&#39;date&#39;]
+        self.__data_end = self.__candles[-1][self.__currencies[0]][&#39;date&#39;]
+
+        if type(balance) == dict:
+            self.__balance = balance
+        elif balance is None:
+            self.__balance = {}
+            self.__balance[&#39;cash&#39;] = 1.0
+            for currency in self.__currencies:
+                self.__balance[currency] = 0.0
+        else:
+            self.__balance = {}
+            self.__balance[&#39;cash&#39;] = float(balance)
+            for currency in self.__currencies:
+                self.__balance[currency] = 0.0
+
+    def __repr__(self):
+        &#39;&#39;&#39;Returns class attributes as a string.&#39;&#39;&#39;
+        return (f&#34;balance: {self.balance}\n&#34;
+                f&#34;fee: {self.fee}\n&#34;
+                f&#34;min_order_size: {self.min_order_size}\n&#34;
+                f&#34;currencies: {self.currencies}\n&#34;
+                f&#34;current_candle: {self.current_candle}\n&#34;
+                f&#34;capital: {self.capital}\n&#34;
+                f&#34;portfolio: {self.portfolio}\n&#34;
+                f&#34;lenght: {len(self)}\n&#34;
+                f&#34;data_start: {self.data_start}\n&#34;
+                f&#34;data_end: {self.data_end}&#34;)
+
+    def __len__(self):
+        &#39;&#39;&#39;Returns the number of candles.&#39;&#39;&#39;
+        return len(self.__candles)
+
+    @property
+    def data_start(self) -&gt; int:
+        &#39;&#39;&#39;Get a starting time of the data.
+
+        Returns:
+            A starting time of the data.
+        &#39;&#39;&#39;
+        return self.__data_start
+
+    @property
+    def data_end(self) -&gt; int:
+        &#39;&#39;&#39;Get an ending time of the data.
+
+        Returns:
+            An ending time of the data.
+        &#39;&#39;&#39;
+        return self.__data_end
+
+    @property
+    def current_candle(self) -&gt; dict:
+        &#39;&#39;&#39;Get a current candle.
+
+        Returns:
+            A current candle.
+        &#39;&#39;&#39;
+        return self.__candles[0]
+
+    @property
+    def balance(self) -&gt; float:
+        &#39;&#39;&#39;Get a current balance.
+
+        Returns:
+            A current balance.
+        &#39;&#39;&#39;
+        return self.__balance
+
+    @property
+    def fee(self) -&gt; float:
+        &#39;&#39;&#39;Get a fee which is used in the exchange.
+
+        Returns:
+            A fee.
+        &#39;&#39;&#39;
+        return self.__fee
+
+    @property
+    def currencies(self) -&gt; float:
+        &#39;&#39;&#39;Get currencies which are used in the exchange.
+
+        Returns:
+            List of currencies.
+        &#39;&#39;&#39;
+        return self.__currencies
+
+    @property
+    def min_order_size(self) -&gt; float:
+        &#39;&#39;&#39;Get a minimum order size which is set in the exchange.
+
+        Returns:
+            A minimum order value expressed in a cash currency.
+        &#39;&#39;&#39;
+        return self.__min_order_size
+
+    @property
+    def capital(self) -&gt; float:
+        &#39;&#39;&#39;Returns a current capital - sum of all currencies if they are
+        converted to a cash without fees.
+
+        Returns:
+            A capital.
+        &#39;&#39;&#39;
+        capital = 0
+        for currency, amount in self.balance.items():
+            if currency == &#39;cash&#39;:
+                capital += amount
+            else:
+                capital += amount * self.current_candle[currency][&#39;close&#39;]
+        return capital
+
+    @property
+    def portfolio(self) -&gt; dict:
+        &#39;&#39;&#39;Returns a current portfolio - proportion of capital by each
+        currency.
+
+        Returns:
+            A portfolio.
+        &#39;&#39;&#39;
+        cap = self.capital
+        portf = {}
+        for currency, amount in self.balance.items():
+            if currency == &#39;cash&#39;:
+                portf[currency] = self.balance[currency] / cap
+            else:
+                portf[currency] = (self.balance[currency]
+                                   * self.current_candle[currency][&#39;close&#39;]
+                                   / cap)
+        return portf
+
+    def next_step(self) -&gt; &#39;Xchg&#39;:
+        &#39;&#39;&#39;Go to the next step in timeline.
+
+        Returns:
+            A new Xchg instance with one candle removed.
+        &#39;&#39;&#39;
+        if len(self.__candles) == 1:
+            raise StopIteration
+        return Xchg(self.fee, self.min_order_size, balance=self.balance,
+                    candles=self.__candles[1:])
+
+    def buy(self, currency: str, amount: float) -&gt; dict:
+        &#39;&#39;&#39;Buy currency.
+
+        Args:
+            currency: A name of the currency.
+            amount: How much units of this currency to buy.
+
+        Returns:
+            A new Xchg instance after a buy operation.
+        &#39;&#39;&#39;
+
+        balance = self.balance.copy()
+        price = self.current_candle[currency][&#39;close&#39;]
+        without_fee = price * amount
+        with_fee = without_fee / (1 - self.fee)
+
+        # If we want to buy a slightly more than we have, we will forgive.
+        if (with_fee &lt;= (self.balance[&#39;cash&#39;] + 1e-10)
+                and without_fee &gt;= self.min_order_size):
+            balance[&#39;cash&#39;] -= with_fee
+            balance[currency] += amount
+            if balance[&#39;cash&#39;] &lt; 0.0:
+                # Set the balance to zero if we bought a slightly more than we
+                # have.
+                balance[&#39;cash&#39;] = 0.0
+
+        return Xchg(self.fee, self.min_order_size, balance=balance,
+                    candles=self.__candles)
+
+    def sell(self, currency: str, amount: float) -&gt; dict:
+        &#39;&#39;&#39;Sell currency.
+
+        Args:
+            currency: A name of the currency.
+            amount: How much units of this currency to sell.
+
+        Returns:
+            A new Xchg instance after a sell operation.
+        &#39;&#39;&#39;
+
+        balance = self.balance.copy()
+        price = self.current_candle[currency][&#39;close&#39;]
+        without_fee = price * amount
+        with_fee = without_fee * (1 - self.fee)
+
+        # If we want to sell a slightly more than we have, we will forgive.
+        if (amount &lt;= (self.balance[currency] + 1e-10)
+                and without_fee &gt;= self.min_order_size):
+            balance[&#39;cash&#39;] += with_fee
+            balance[currency] -= amount
+            if balance[currency] &lt; 0.0:
+                # Set the balance to zero if we bought a slightly more than we
+                # have.
+                balance[currency] = 0.0
+
+        return Xchg(self.fee, self.min_order_size, balance=balance,
+                    candles=self.__candles)
+
+    def make_portfolio(self, target_portfolio: dict) -&gt; dict:
+        &#39;&#39;&#39;Make a desired portfolio.
+
+        Args:
+            target_portfolio: A desired portfolio.
+
+        Returns:
+            A new Xchg instance with a desired portfolio distribution.
+        &#39;&#39;&#39;
+
+        x = self
+
+        # Calculate a capital change after trading.
+        cc0 = 1
+        cc1 = 1 - 2 * self.fee + self.fee ** 2
+        while abs(cc1 - cc0) &gt; 1e-10:
+            cc0 = cc1
+
+            # How much we will get from selling.
+            sell_amount = 0
+            for cur in x.currencies:
+                amount = x.portfolio[cur] - cc1 * target_portfolio[cur]
+                if amount &gt; 0:
+                    sell_amount += amount
+
+            cc1 = (1 - x.fee * x.portfolio[&#39;cash&#39;] - (2 * x.fee - x.fee ** 2)
+                   * sell_amount) \
+                / (1 - self.fee * target_portfolio[&#39;cash&#39;])
+
+        # A capital after trade.
+        tar_capital = x.capital * cc1
+
+        # Sell first.
+        for cur in x.currencies:
+            amount = tar_capital * target_portfolio[cur] \
+                     / x.current_candle[cur][&#39;close&#39;] - x.balance[cur]
+            if amount &lt; 0:
+                x = x.sell(cur, abs(amount))
+
+        # Then buy.
+        for cur in x.currencies:
+            amount = tar_capital * target_portfolio[cur] \
+                     / x.current_candle[cur][&#39;close&#39;] - x.balance[cur]
+            if amount &gt; 0:
+                x = x.buy(cur, abs(amount))
+
+        return x</code></pre>
+</details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="xchg.xchg.Xchg.balance"><code class="name">var <span class="ident">balance</span> : float</code></dt>
+<dd>
+<div class="desc"><p>Get a current balance.</p>
+<h2 id="returns">Returns</h2>
+<p>A current balance.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def balance(self) -&gt; float:
+    &#39;&#39;&#39;Get a current balance.
+
+    Returns:
+        A current balance.
+    &#39;&#39;&#39;
+    return self.__balance</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.capital"><code class="name">var <span class="ident">capital</span> : float</code></dt>
+<dd>
+<div class="desc"><p>Returns a current capital - sum of all currencies if they are
+converted to a cash without fees.</p>
+<h2 id="returns">Returns</h2>
+<p>A capital.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def capital(self) -&gt; float:
+    &#39;&#39;&#39;Returns a current capital - sum of all currencies if they are
+    converted to a cash without fees.
+
+    Returns:
+        A capital.
+    &#39;&#39;&#39;
+    capital = 0
+    for currency, amount in self.balance.items():
+        if currency == &#39;cash&#39;:
+            capital += amount
+        else:
+            capital += amount * self.current_candle[currency][&#39;close&#39;]
+    return capital</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.currencies"><code class="name">var <span class="ident">currencies</span> : float</code></dt>
+<dd>
+<div class="desc"><p>Get currencies which are used in the exchange.</p>
+<h2 id="returns">Returns</h2>
+<p>List of currencies.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def currencies(self) -&gt; float:
+    &#39;&#39;&#39;Get currencies which are used in the exchange.
+
+    Returns:
+        List of currencies.
+    &#39;&#39;&#39;
+    return self.__currencies</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.current_candle"><code class="name">var <span class="ident">current_candle</span> : dict</code></dt>
+<dd>
+<div class="desc"><p>Get a current candle.</p>
+<h2 id="returns">Returns</h2>
+<p>A current candle.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def current_candle(self) -&gt; dict:
+    &#39;&#39;&#39;Get a current candle.
+
+    Returns:
+        A current candle.
+    &#39;&#39;&#39;
+    return self.__candles[0]</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.data_end"><code class="name">var <span class="ident">data_end</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Get an ending time of the data.</p>
+<h2 id="returns">Returns</h2>
+<p>An ending time of the data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def data_end(self) -&gt; int:
+    &#39;&#39;&#39;Get an ending time of the data.
+
+    Returns:
+        An ending time of the data.
+    &#39;&#39;&#39;
+    return self.__data_end</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.data_start"><code class="name">var <span class="ident">data_start</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Get a starting time of the data.</p>
+<h2 id="returns">Returns</h2>
+<p>A starting time of the data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def data_start(self) -&gt; int:
+    &#39;&#39;&#39;Get a starting time of the data.
+
+    Returns:
+        A starting time of the data.
+    &#39;&#39;&#39;
+    return self.__data_start</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.fee"><code class="name">var <span class="ident">fee</span> : float</code></dt>
+<dd>
+<div class="desc"><p>Get a fee which is used in the exchange.</p>
+<h2 id="returns">Returns</h2>
+<p>A fee.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def fee(self) -&gt; float:
+    &#39;&#39;&#39;Get a fee which is used in the exchange.
+
+    Returns:
+        A fee.
+    &#39;&#39;&#39;
+    return self.__fee</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.min_order_size"><code class="name">var <span class="ident">min_order_size</span> : float</code></dt>
+<dd>
+<div class="desc"><p>Get a minimum order size which is set in the exchange.</p>
+<h2 id="returns">Returns</h2>
+<p>A minimum order value expressed in a cash currency.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def min_order_size(self) -&gt; float:
+    &#39;&#39;&#39;Get a minimum order size which is set in the exchange.
+
+    Returns:
+        A minimum order value expressed in a cash currency.
+    &#39;&#39;&#39;
+    return self.__min_order_size</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.portfolio"><code class="name">var <span class="ident">portfolio</span> : dict</code></dt>
+<dd>
+<div class="desc"><p>Returns a current portfolio - proportion of capital by each
+currency.</p>
+<h2 id="returns">Returns</h2>
+<p>A portfolio.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def portfolio(self) -&gt; dict:
+    &#39;&#39;&#39;Returns a current portfolio - proportion of capital by each
+    currency.
+
+    Returns:
+        A portfolio.
+    &#39;&#39;&#39;
+    cap = self.capital
+    portf = {}
+    for currency, amount in self.balance.items():
+        if currency == &#39;cash&#39;:
+            portf[currency] = self.balance[currency] / cap
+        else:
+            portf[currency] = (self.balance[currency]
+                               * self.current_candle[currency][&#39;close&#39;]
+                               / cap)
+    return portf</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="xchg.xchg.Xchg.buy"><code class="name flex">
+<span>def <span class="ident">buy</span></span>(<span>self, currency: str, amount: float) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Buy currency.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>currency</code></strong></dt>
+<dd>A name of the currency.</dd>
+<dt><strong><code>amount</code></strong></dt>
+<dd>How much units of this currency to buy.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A new Xchg instance after a buy operation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def buy(self, currency: str, amount: float) -&gt; dict:
+    &#39;&#39;&#39;Buy currency.
+
+    Args:
+        currency: A name of the currency.
+        amount: How much units of this currency to buy.
+
+    Returns:
+        A new Xchg instance after a buy operation.
+    &#39;&#39;&#39;
+
+    balance = self.balance.copy()
+    price = self.current_candle[currency][&#39;close&#39;]
+    without_fee = price * amount
+    with_fee = without_fee / (1 - self.fee)
+
+    # If we want to buy a slightly more than we have, we will forgive.
+    if (with_fee &lt;= (self.balance[&#39;cash&#39;] + 1e-10)
+            and without_fee &gt;= self.min_order_size):
+        balance[&#39;cash&#39;] -= with_fee
+        balance[currency] += amount
+        if balance[&#39;cash&#39;] &lt; 0.0:
+            # Set the balance to zero if we bought a slightly more than we
+            # have.
+            balance[&#39;cash&#39;] = 0.0
+
+    return Xchg(self.fee, self.min_order_size, balance=balance,
+                candles=self.__candles)</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.make_portfolio"><code class="name flex">
+<span>def <span class="ident">make_portfolio</span></span>(<span>self, target_portfolio: dict) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Make a desired portfolio.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>target_portfolio</code></strong></dt>
+<dd>A desired portfolio.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A new Xchg instance with a desired portfolio distribution.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def make_portfolio(self, target_portfolio: dict) -&gt; dict:
+    &#39;&#39;&#39;Make a desired portfolio.
+
+    Args:
+        target_portfolio: A desired portfolio.
+
+    Returns:
+        A new Xchg instance with a desired portfolio distribution.
+    &#39;&#39;&#39;
+
+    x = self
+
+    # Calculate a capital change after trading.
+    cc0 = 1
+    cc1 = 1 - 2 * self.fee + self.fee ** 2
+    while abs(cc1 - cc0) &gt; 1e-10:
+        cc0 = cc1
+
+        # How much we will get from selling.
+        sell_amount = 0
+        for cur in x.currencies:
+            amount = x.portfolio[cur] - cc1 * target_portfolio[cur]
+            if amount &gt; 0:
+                sell_amount += amount
+
+        cc1 = (1 - x.fee * x.portfolio[&#39;cash&#39;] - (2 * x.fee - x.fee ** 2)
+               * sell_amount) \
+            / (1 - self.fee * target_portfolio[&#39;cash&#39;])
+
+    # A capital after trade.
+    tar_capital = x.capital * cc1
+
+    # Sell first.
+    for cur in x.currencies:
+        amount = tar_capital * target_portfolio[cur] \
+                 / x.current_candle[cur][&#39;close&#39;] - x.balance[cur]
+        if amount &lt; 0:
+            x = x.sell(cur, abs(amount))
+
+    # Then buy.
+    for cur in x.currencies:
+        amount = tar_capital * target_portfolio[cur] \
+                 / x.current_candle[cur][&#39;close&#39;] - x.balance[cur]
+        if amount &gt; 0:
+            x = x.buy(cur, abs(amount))
+
+    return x</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.next_step"><code class="name flex">
+<span>def <span class="ident">next_step</span></span>(<span>self) ‑> <a title="xchg.xchg.Xchg" href="#xchg.xchg.Xchg">Xchg</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Go to the next step in timeline.</p>
+<h2 id="returns">Returns</h2>
+<p>A new Xchg instance with one candle removed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def next_step(self) -&gt; &#39;Xchg&#39;:
+    &#39;&#39;&#39;Go to the next step in timeline.
+
+    Returns:
+        A new Xchg instance with one candle removed.
+    &#39;&#39;&#39;
+    if len(self.__candles) == 1:
+        raise StopIteration
+    return Xchg(self.fee, self.min_order_size, balance=self.balance,
+                candles=self.__candles[1:])</code></pre>
+</details>
+</dd>
+<dt id="xchg.xchg.Xchg.sell"><code class="name flex">
+<span>def <span class="ident">sell</span></span>(<span>self, currency: str, amount: float) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sell currency.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>currency</code></strong></dt>
+<dd>A name of the currency.</dd>
+<dt><strong><code>amount</code></strong></dt>
+<dd>How much units of this currency to sell.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A new Xchg instance after a sell operation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sell(self, currency: str, amount: float) -&gt; dict:
+    &#39;&#39;&#39;Sell currency.
+
+    Args:
+        currency: A name of the currency.
+        amount: How much units of this currency to sell.
+
+    Returns:
+        A new Xchg instance after a sell operation.
+    &#39;&#39;&#39;
+
+    balance = self.balance.copy()
+    price = self.current_candle[currency][&#39;close&#39;]
+    without_fee = price * amount
+    with_fee = without_fee * (1 - self.fee)
+
+    # If we want to sell a slightly more than we have, we will forgive.
+    if (amount &lt;= (self.balance[currency] + 1e-10)
+            and without_fee &gt;= self.min_order_size):
+        balance[&#39;cash&#39;] += with_fee
+        balance[currency] -= amount
+        if balance[currency] &lt; 0.0:
+            # Set the balance to zero if we bought a slightly more than we
+            # have.
+            balance[currency] = 0.0
+
+    return Xchg(self.fee, self.min_order_size, balance=balance,
+                candles=self.__candles)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="xchg" href="index.html">xchg</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="xchg.xchg.Xchg" href="#xchg.xchg.Xchg">Xchg</a></code></h4>
+<ul class="two-column">
+<li><code><a title="xchg.xchg.Xchg.balance" href="#xchg.xchg.Xchg.balance">balance</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.buy" href="#xchg.xchg.Xchg.buy">buy</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.capital" href="#xchg.xchg.Xchg.capital">capital</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.currencies" href="#xchg.xchg.Xchg.currencies">currencies</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.current_candle" href="#xchg.xchg.Xchg.current_candle">current_candle</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.data_end" href="#xchg.xchg.Xchg.data_end">data_end</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.data_start" href="#xchg.xchg.Xchg.data_start">data_start</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.fee" href="#xchg.xchg.Xchg.fee">fee</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.make_portfolio" href="#xchg.xchg.Xchg.make_portfolio">make_portfolio</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.min_order_size" href="#xchg.xchg.Xchg.min_order_size">min_order_size</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.next_step" href="#xchg.xchg.Xchg.next_step">next_step</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.portfolio" href="#xchg.xchg.Xchg.portfolio">portfolio</a></code></li>
+<li><code><a title="xchg.xchg.Xchg.sell" href="#xchg.xchg.Xchg.sell">sell</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
